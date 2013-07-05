@@ -1,4 +1,4 @@
-# Armoire
+# Armoire [![Build Status](https://travis-ci.org/mikespokefire/armoire.png?branch=master)](https://travis-ci.org/mikespokefire/armoire)
 
 A simple configuration tool for your ruby application settings
 
