@@ -1,11 +1,11 @@
 # coding: utf-8
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'configuration/version'
+require 'armoire/version'
 
 Gem::Specification.new do |spec|
   spec.name          = "configuration"
-  spec.version       = Configuration::VERSION
+  spec.version       = Armoire::VERSION
   spec.authors       = ["Michael Smith"]
   spec.email         = ["mike@spokefire.co.uk"]
   spec.description   = %q{A simple configuration tool}

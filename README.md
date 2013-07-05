@@ -1,4 +1,4 @@
-# Configuration
+# Armoire
 
 A simple configuration tool for your ruby application settings
 
@@ -18,7 +18,7 @@ Or install it yourself as:
 
 ## Usage
 
-Configuration should be simple. Simply create a yaml file in `config/application.yml` with the following:
+Armoire should be simple. Simply create a yaml file in `config/application.yml` with the following:
 
     development:
       foo: "bar"
@@ -38,9 +38,10 @@ Configuration should be simple. Simply create a yaml file in `config/application
       boolean_value: true
       parsed_things: <% "something_in_erb" %>
 
-Simply call `Configuration[:foo]` to get `"bar"` or `Configuration[:nested_options][:nested_foo]` to get `"nested_bar"`. Any ERB will be parsed when the config file is loaded. If a configuration option is missing, it will throw a `Configuration::MissingSetting` error.
+Simply call `Armoire[:foo]` to get `"bar"` or `Configuration[:nested_options][:nested_foo]` to get `"nested_bar"`. Any ERB will be parsed when the config file is loaded. If a configuration option is missing, it will throw an `Armoire::ConfigSettingMissing` exception.
 
-Configuration environment will initially be taken from `ENV['RAILS_ENV']`, then `ENV['RACK_ENV']` and if neither exist then it will fall back to `development`
+The configuration environment will initially be taken from `ENV['RAILS_ENV']`, then `ENV['RACK_ENV']` and if neither exist then it will fall back to `development`
+
 
 ## Contributing
 
