@@ -1,6 +1,6 @@
 # Configuration
 
-TODO: Write a gem description
+A simple configuration tool for your ruby application settings
 
 ## Installation
 
@@ -18,7 +18,29 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+Configuration should be simple. Simply create a yaml file in `config/application.yml` with the following:
+
+    development:
+      foo: "bar"
+      baz: 42
+      nested_options:
+        nested_foo: "nested_bar"
+        nested_baz: 99.999
+      boolean_value: true
+      parsed_things: <% "something_in_erb" %>
+
+    test:
+      foo: "bar"
+      baz: 42
+      nested_options:
+        nested_foo: "nested bar"
+        nested_baz: 99.999
+      boolean_value: true
+      parsed_things: <% "something_in_erb" %>
+
+Simply call `Configuration[:foo]` to get `"bar"` or `Configuration[:nested_options][:nested_foo]` to get `"nested_bar"`. Any ERB will be parsed when the config file is loaded. If a configuration option is missing, it will throw a `Configuration::MissingSetting` error.
+
+Configuration environment will initially be taken from `ENV['RAILS_ENV']`, then `ENV['RACK_ENV']` and if neither exist then it will fall back to `development`
 
 ## Contributing
 
