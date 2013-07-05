@@ -1,3 +1,6 @@
+require 'simplecov'
+SimpleCov.start
+
 require 'armoire'
 
 RSpec.configure do |config|
