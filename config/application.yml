@@ -1,0 +1,6 @@
+development:
+  simple_config_option: "simple_config_option_value"
+  erb_config_option: <%= "erb_config_option_value" %>
+  nested:
+    config:
+      option: "nested_config_option_value"
