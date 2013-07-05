@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.email         = ["mike@spokefire.co.uk"]
   spec.description   = %q{A simple configuration tool}
   spec.summary       = %q{A simple configuration tool}
-  spec.homepage      = ""
+  spec.homepage      = "https://github.com/mikespokefire/armoire"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files`.split($/)
