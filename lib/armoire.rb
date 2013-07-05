@@ -1,6 +1,7 @@
 require 'singleton'
 require 'yaml'
 
+require "armoire/setting"
 require "armoire/version"
 
 class Armoire
@@ -12,16 +13,13 @@ class Armoire
     ENV['RAILS_ENV'] || ENV['RACK_ENV'] || 'development'
   end
 
-  def self.[](setting)
+  def self.[](key)
     instance.load!
-
-    instance.settings.fetch(setting) do
-      raise ConfigSettingMissing, %Q{"#{setting}" is not set}
-    end
+    instance.settings[key]
   end
 
   def load!
-    @settings ||= load_settings
+    @settings ||= Setting.new(load_settings)
   end
 
   def load_settings
