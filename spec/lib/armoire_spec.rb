@@ -5,28 +5,53 @@ describe Armoire do
     subject { described_class.instance.environment }
 
     context "ENV['RAILS_ENV'] is set" do
-      before { ENV['RAILS_ENV'] = 'rails_env' }
+      before do
+        @prev_rails_env = ENV['RAILS_ENV']
+        ENV['RAILS_ENV'] = 'rails_env'
+      end
 
       it "returns the result of ENV['RAILS_ENV'] as first priority" do
         expect(subject).to eql('rails_env')
       end
 
-      after { ENV['RAILS_ENV'] = nil }
+      after do
+        ENV['RAILS_ENV'] = @prev_rails_env
+      end
     end
 
     context "ENV['RACK_ENV'] is set" do
-      before { ENV['RACK_ENV'] = 'rack_env' }
+      before do
+        @prev_rails_env = ENV['RAILS_ENV']
+        @prev_rack_env = ENV['RACK_ENV']
+        ENV['RAILS_ENV'] = nil
+        ENV['RACK_ENV'] = 'rack_env'
+      end
 
       it "returns the result of ENV['RACK_ENV'] as second priority" do
         expect(subject).to eql('rack_env')
       end
 
-      after { ENV['RACK_ENV'] = nil }
+      after do
+        ENV['RAILS_ENV'] = @prev_rails_env
+        ENV['RACK_ENV'] = @prev_rack_env
+      end
     end
 
     context "nothing is set" do
+      before do
+        @prev_rails_env = ENV['RAILS_ENV']
+        @prev_rack_env = ENV['RACK_ENV']
+        ENV['RAILS_ENV'] = nil
+        ENV['RACK_ENV'] = nil
+      end
+
       it "returns development as a fallback if nothing else is set" do
         expect(subject).to eql("development")
+      end
+
+      after do
+        ENV['RAILS_ENV'] = @prev_rails_env
+        ENV['RACK_ENV'] = @prev_rack_env
       end
     end
   end
@@ -65,5 +90,9 @@ describe Armoire do
         expect { subject }.to raise_error(Armoire::ConfigSettingMissing, '"missing_setting" is not set')
       end
     end
+  end
+
+  describe '.load!' do
+    it "should have a spec"
   end
 end

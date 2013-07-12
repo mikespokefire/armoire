@@ -4,7 +4,7 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'armoire/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = "configuration"
+  spec.name          = "armoire"
   spec.version       = Armoire::VERSION
   spec.authors       = ["Michael Smith"]
   spec.email         = ["mike@spokefire.co.uk"]

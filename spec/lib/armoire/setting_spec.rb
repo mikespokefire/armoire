@@ -33,5 +33,12 @@ describe Armoire::Setting do
         expect(subject).to eql("nested config value")
       end
     end
+
+    context 'missing key' do
+      subject { setting["missing_setting"] }
+      it "raises an error" do
+        expect { subject }.to raise_error(Armoire::ConfigSettingMissing, '"missing_setting" is not set')
+      end
+    end
   end
 end
