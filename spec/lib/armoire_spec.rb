@@ -93,16 +93,26 @@ describe Armoire do
   end
 
   describe '.load!' do
-    before do
-      Armoire.load! File.expand_path('../fixtures/custom_load.yml', File.dirname(__FILE__))
+    context 'setting files exists' do
+      before do
+        Armoire.load! File.expand_path('../fixtures/custom_load.yml', File.dirname(__FILE__))
+      end
+
+      it "returns the new config settings" do
+        expect(Armoire["custom_config_option"]).to eql("custom_config_option_value")
+      end
+
+      it "doesn't keep the original settings" do
+        expect { Armoire["simple_config_option"] }.to raise_error(Armoire::ConfigSettingMissing, '"simple_config_option" is not set')
+      end
     end
 
-    it "returns the new config settings" do
-      expect(Armoire["custom_config_option"]).to eql("custom_config_option_value")
-    end
+    context 'settings file does not exist' do
+      subject { Armoire.load! File.expand_path('../fixtures/missing_file.yml', File.dirname(__FILE__)) }
 
-    it "doesn't keep the original settings" do
-      expect { Armoire["simple_config_option"] }.to raise_error(Armoire::ConfigSettingMissing, '"simple_config_option" is not set')
+      it "returns an exception" do
+        expect { subject }.to raise_error(Armoire::MissingSettingsFile, 'The settings file cannot be found')
+      end
     end
 
     after do
