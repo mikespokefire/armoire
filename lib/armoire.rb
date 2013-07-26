@@ -3,6 +3,7 @@ require 'yaml'
 
 require "armoire/setting"
 require "armoire/version"
+require "armoire/railtie" if defined?(Rails)
 
 class Armoire
   include Singleton
@@ -23,7 +24,12 @@ class Armoire
 
   def load_settings(path_to_config_file)
     YAML.load(ERB.new(File.read(path_to_config_file)).result)[environment]
+  rescue Errno::ENOENT => e
+    raise MissingSettingsFile.new('The settings file cannot be found')
   end
+
+  # When the settings file cannot be read, this exception will be raised
+  class MissingSettingsFile < StandardError; end
 
   # When a config setting isn't set, this exception will be raised
   class ConfigSettingMissing < StandardError; end
