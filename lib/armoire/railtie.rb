@@ -1,6 +1,6 @@
 class Armoire
   class Railtie < Rails::Railtie
-    initializer "armoire.load_config" do
+    config.before_configuration do
       Armoire.load! Rails.root.join('config', 'application.yml')
     end
   end
