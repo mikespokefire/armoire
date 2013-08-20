@@ -1,5 +1,6 @@
 require 'singleton'
 require 'yaml'
+require 'erb'
 
 require "armoire/setting"
 require "armoire/version"

@@ -6,7 +6,7 @@ A simple configuration tool for your ruby application settings
 
 Add this line to your application's Gemfile:
 
-    gem 'configuration'
+    gem 'armoire'
 
 And then execute:
 
@@ -14,7 +14,7 @@ And then execute:
 
 Or install it yourself as:
 
-    $ gem install configuration
+    $ gem install armoire
 
 ## Usage
 
