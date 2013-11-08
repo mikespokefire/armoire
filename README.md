@@ -42,6 +42,9 @@ Simply call `Armoire["foo"]` to get `"bar"` or `Armoire["nested_options"]["neste
 
 The configuration environment will initially be taken from `ENV['RAILS_ENV']`, then `ENV['RACK_ENV']` and if neither exist then it will fall back to `development`
 
+### Usage in Rails
+
+This gem has a Railtie that automatically loads Armoire as early as it can in the load process, this means that Armoire will be available everywhere in your Rails application.
 
 ## Contributing
 
