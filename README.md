@@ -46,6 +46,12 @@ The configuration environment will initially be taken from `ENV['RAILS_ENV']`, t
 
 This gem has a Railtie that automatically loads Armoire as early as it can in the load process, this means that Armoire will be available everywhere in your Rails application.
 
+### Usage in other frameworks
+
+You need to tell Armoire to load your settings as early in the initialisation process as possible by doing:
+
+    Armoire.load! File.expand_path('config/application.yml', File.dirname(__FILE__))
+
 ## Contributing
 
 1. Fork it
