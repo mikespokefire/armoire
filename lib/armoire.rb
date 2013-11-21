@@ -11,7 +11,7 @@ class Armoire
 
   attr_accessor :settings
 
-  def environment
+  def self.environment
     ENV['RAILS_ENV'] || ENV['RACK_ENV'] || 'development'
   end
 
@@ -29,7 +29,7 @@ class Armoire
   end
 
   def load_settings(path_to_config_file)
-    YAML.load(ERB.new(File.read(path_to_config_file)).result)[environment]
+    YAML.load(ERB.new(File.read(path_to_config_file)).result)
   rescue Errno::ENOENT => e
     raise MissingSettingsFile.new('The settings file cannot be found')
   end
