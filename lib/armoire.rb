@@ -19,6 +19,11 @@ class Armoire
     instance.settings[key]
   end
 
+  def self.env(key)
+    raise EnvironmentVariableMissing, "Can't find #{key}" if ENV[key].nil?
+    ENV[key]
+  end
+
   def self.load!(path_to_config_file)
     instance.settings = Setting.new(instance.load_settings(path_to_config_file))
   end
@@ -34,4 +39,7 @@ class Armoire
 
   # When a config setting isn't set, this exception will be raised
   class ConfigSettingMissing < StandardError; end
+
+  # When an ENV variable isn't set, this exception will be raised
+  class EnvironmentVariableMissing < StandardError; end
 end
