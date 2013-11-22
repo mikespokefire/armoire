@@ -11,7 +11,7 @@ class Armoire
 
   attr_accessor :settings
 
-  def environment
+  def self.environment
     ENV['RAILS_ENV'] || ENV['RACK_ENV'] || 'development'
   end
 
@@ -19,12 +19,17 @@ class Armoire
     instance.settings[key]
   end
 
+  def self.env(key)
+    raise EnvironmentVariableMissing, "Can't find #{key}" if ENV[key].nil?
+    ENV[key]
+  end
+
   def self.load!(path_to_config_file)
     instance.settings = Setting.new(instance.load_settings(path_to_config_file))
   end
 
   def load_settings(path_to_config_file)
-    YAML.load(ERB.new(File.read(path_to_config_file)).result)[environment]
+    YAML.load(ERB.new(File.read(path_to_config_file)).result)
   rescue Errno::ENOENT => e
     raise MissingSettingsFile.new('The settings file cannot be found')
   end
@@ -34,4 +39,7 @@ class Armoire
 
   # When a config setting isn't set, this exception will be raised
   class ConfigSettingMissing < StandardError; end
+
+  # When an ENV variable isn't set, this exception will be raised
+  class EnvironmentVariableMissing < StandardError; end
 end
