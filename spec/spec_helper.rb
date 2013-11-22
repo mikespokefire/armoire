@@ -1,7 +1,9 @@
 ENV['RACK_ENV'] = 'test'
 
-require 'simplecov'
-SimpleCov.start
+unless defined?(Rubinius)
+  require 'simplecov'
+  SimpleCov.start
+end
 
 require 'armoire'
 
