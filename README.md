@@ -40,6 +40,8 @@ Armoire should be simple. Simply create a yaml file in `config/application.yml` 
 
 Simply call `Armoire["foo"]` to get `"bar"` or `Armoire["nested_options"]["nested_foo"]` to get `"nested_bar"`. Any ERB will be parsed when the config file is loaded. If a configuration option is missing, it will throw an `Armoire::ConfigSettingMissing` exception.
 
+You may also call keys with any object that responds to `#to_s` and armoire will work correctly, e.g. `Armoire[:foo]`.
+
 The configuration environment will initially be taken from `ENV['RAILS_ENV']`, then `ENV['RACK_ENV']` and if neither exist then it will fall back to `development`
 
 ### Usage in Rails
