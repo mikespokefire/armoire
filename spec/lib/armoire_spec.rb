@@ -63,6 +63,12 @@ describe Armoire do
       it { expect(subject).to eql("simple_config_option_value") }
     end
 
+    context "referencing key via symbol instead of string" do
+      subject { Armoire[:simple_config_option] }
+
+      it { expect(subject).to eql("simple_config_option_value") }
+    end
+
     context "erb config option" do
       subject { Armoire["erb_config_option"] }
 
