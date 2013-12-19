@@ -5,7 +5,7 @@ class Armoire
     end
 
     def [](key)
-      value = setting.fetch(key) do
+      value = setting.fetch(key.to_s) do
         raise ConfigSettingMissing, %Q{"#{key}" is not set}
       end
 
