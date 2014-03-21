@@ -4,8 +4,12 @@ require 'erb'
 
 require "armoire/setting"
 require "armoire/version"
-require "armoire/railtie" if defined?(Rails::Railtie)
-require "armoire/init" if defined?(Rails.configuration)
+
+if defined?(Rails::Railtie)
+  require "armoire/railtie"
+elsif defined?(Rails.configuration)
+  require "armoire/init"
+end
 
 class Armoire
   include Singleton
