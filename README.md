@@ -42,7 +42,9 @@ Simply call `Armoire["foo"]` to get `"bar"` or `Armoire["nested_options"]["neste
 
 You may also call keys with any object that responds to `#to_s` and armoire will work correctly, e.g. `Armoire[:foo]`.
 
-The configuration environment will initially be taken from `ENV['RAILS_ENV']`, then `ENV['RACK_ENV']` and if neither exist then it will fall back to `development`
+The configuration environment will initially be taken from `ENV['RAILS_ENV']`, then `ENV['RACK_ENV']` and if neither exist then it will fall back to `development`.  Environment can also be set explicitly, but must be set prior to calling `load!`
+
+    Armoire.environment = 'not_rack'
 
 ### Usage in Rails
 

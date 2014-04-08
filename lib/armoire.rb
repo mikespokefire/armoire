@@ -15,10 +15,7 @@ class Armoire
   include Singleton
 
   attr_accessor :settings
-
-  def environment
-    ENV['RAILS_ENV'] || ENV['RACK_ENV'] || 'development'
-  end
+  attr_writer :environment
 
   def self.[](key)
     instance.settings[key]
@@ -26,6 +23,14 @@ class Armoire
 
   def self.load!(path_to_config_file)
     instance.settings = Setting.new(instance.load_settings(path_to_config_file))
+  end
+
+  def self.environment=(environment)
+    instance.environment = environment
+  end
+
+  def environment
+    @environment ||= ENV['RAILS_ENV'] || ENV['RACK_ENV'] || 'development'
   end
 
   def load_settings(path_to_config_file)

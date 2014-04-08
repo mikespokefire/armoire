@@ -4,6 +4,10 @@ describe Armoire do
   describe '#.environment' do
     subject { described_class.instance.environment }
 
+    before do
+      described_class.environment = nil
+    end
+
     context "ENV['RAILS_ENV'] is set" do
       before do
         @prev_rails_env = ENV['RAILS_ENV']
@@ -37,6 +41,27 @@ describe Armoire do
       end
     end
 
+    context "environment is explicitly set" do
+      before do
+        @prev_rails_env = ENV['RAILS_ENV']
+        @prev_rack_env = ENV['RACK_ENV']
+        ENV['RAILS_ENV'] = nil
+        ENV['RACK_ENV'] = nil
+        described_class.environment = 'no_rack'
+      end
+
+      it "returns the explicitly set environment" do
+        expect(subject).to eql("no_rack")
+      end
+
+      after do
+        ENV['RAILS_ENV'] = @prev_rails_env
+        ENV['RACK_ENV'] = @prev_rack_env
+        described_class.environment = nil
+      end
+    end
+
+
     context "nothing is set" do
       before do
         @prev_rails_env = ENV['RAILS_ENV']
@@ -53,6 +78,10 @@ describe Armoire do
         ENV['RAILS_ENV'] = @prev_rails_env
         ENV['RACK_ENV'] = @prev_rack_env
       end
+    end
+
+    after do
+      described_class.environment = nil
     end
   end
 
