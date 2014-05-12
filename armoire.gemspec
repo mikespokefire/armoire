@@ -6,11 +6,11 @@ require 'armoire/version'
 Gem::Specification.new do |spec|
   spec.name          = "armoire"
   spec.version       = Armoire::VERSION
-  spec.authors       = ["Michael Smith"]
-  spec.email         = ["mike@spokefire.co.uk"]
+  spec.authors       = ["Michael Smith", "onthebeach"]
+  spec.email         = ["mike@spokefire.co.uk", "development@onthebeach.co.uk"]
   spec.description   = %q{A simple configuration tool}
   spec.summary       = %q{A simple configuration tool}
-  spec.homepage      = "https://github.com/mikespokefire/armoire"
+  spec.homepage      = "https://github.com/onthebeach/armoire"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files`.split($/)
