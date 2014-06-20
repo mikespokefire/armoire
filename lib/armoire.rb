@@ -29,6 +29,10 @@ class Armoire
     instance.environment = environment
   end
 
+  def self.environment
+    instance.environment
+  end
+
   def environment
     @environment ||= ENV['RAILS_ENV'] || ENV['RACK_ENV'] || 'development'
   end

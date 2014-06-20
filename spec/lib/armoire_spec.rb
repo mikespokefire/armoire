@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe Armoire do
-  describe '#.environment' do
+  describe '#environment' do
     subject { described_class.instance.environment }
 
     before do
@@ -152,6 +152,14 @@ describe Armoire do
 
     after do
       Armoire.load! File.expand_path('../fixtures/application.yml', File.dirname(__FILE__))
+    end
+  end
+
+  describe '.environment' do
+    subject { Armoire.environment }
+
+    it "returns the current environment armoire is set to read" do
+      expect(subject).to eql("test")
     end
   end
 end
