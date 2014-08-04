@@ -5,12 +5,6 @@ require 'erb'
 require "armoire/setting"
 require "armoire/version"
 
-if defined?(Rails::Railtie)
-  require "armoire/railtie"
-elsif defined?(Rails.configuration)
-  require "armoire/init"
-end
-
 class Armoire
   include Singleton
 
@@ -48,4 +42,10 @@ class Armoire
 
   # When a config setting isn't set, this exception will be raised
   class ConfigSettingMissing < StandardError; end
+end
+
+if defined?(Rails::Railtie)
+  require "armoire/railtie"
+elsif defined?(Rails.configuration)
+  require "armoire/init"
 end
