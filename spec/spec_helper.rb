@@ -1,10 +1,5 @@
 ENV['RACK_ENV'] = 'test'
 
-unless defined?(Rubinius)
-  require 'simplecov'
-  SimpleCov.start
-end
-
 require 'armoire'
 
 RSpec.configure do |config|
