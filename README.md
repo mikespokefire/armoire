@@ -1,4 +1,4 @@
-# Armoire [![Build Status](https://travis-ci.org/mikespokefire/armoire.png?branch=master)](https://travis-ci.org/mikespokefire/armoire) [![Code Climate](https://codeclimate.com/github/mikespokefire/armoire.png)](https://codeclimate.com/github/mikespokefire/armoire)
+# Armoire [![Build Status](https://travis-ci.org/onthebeach/armoire.png?branch=master)](https://travis-ci.org/onthebeach/armoire) [![Code Climate](https://codeclimate.com/github/onthebeach/armoire.png)](https://codeclimate.com/github/onthebeach/armoire)
 
 A simple configuration tool for your ruby application settings
 
