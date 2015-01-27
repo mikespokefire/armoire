@@ -27,6 +27,10 @@ class Armoire
     instance.environment
   end
 
+  def self.fetch(key)
+    instance.settings.fetch(key)
+  end
+
   def environment
     @environment ||= ENV['RAILS_ENV'] || ENV['RACK_ENV'] || 'development'
   end
