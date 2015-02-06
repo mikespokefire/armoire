@@ -27,10 +27,6 @@ class Armoire
     instance.environment
   end
 
-  def self.fetch(key)
-    instance.settings.fetch(key)
-  end
-
   def environment
     @environment ||= ENV['RAILS_ENV'] || ENV['RACK_ENV'] || 'development'
   end
@@ -46,6 +42,10 @@ class Armoire
 
   # When a config setting isn't set, this exception will be raised
   class ConfigSettingMissing < StandardError; end
+
+  class << self
+    alias fetch []
+  end
 end
 
 if defined?(Rails::Railtie)
