@@ -127,6 +127,48 @@ describe Armoire do
     end
   end
 
+  describe '#fetch' do
+    context "simple config option" do
+      subject { Armoire.fetch("simple_config_option") }
+
+      it { expect(subject).to eql("simple_config_option_value") }
+    end
+
+    context "referencing key via symbol instead of string" do
+      subject { Armoire.fetch(:simple_config_option) }
+
+      it { expect(subject).to eql("simple_config_option_value") }
+    end
+
+    context "erb config option" do
+      subject { Armoire.fetch("erb_config_option") }
+
+      it { expect(subject).to eql("erb_config_option_value") }
+    end
+
+    context "nested config option" do
+      subject { Armoire.fetch("nested").fetch("config").fetch("option") }
+
+      it { expect(subject).to eql("nested_config_option_value") }
+    end
+
+    context 'config setting is missing' do
+      subject { Armoire.fetch("missing_setting") }
+
+      it "raises an error" do
+        expect { subject }.to raise_error(Armoire::ConfigSettingMissing, '"missing_setting" is not set')
+      end
+    end
+
+    context 'nested config setting is missing' do
+      subject { Armoire.fetch("nested").fetch("config").fetch("missing_setting") }
+
+      it "raises an error" do
+        expect { subject }.to raise_error(Armoire::ConfigSettingMissing, '"missing_setting" is not set')
+      end
+    end
+  end
+
   describe '.load!' do
     context 'setting files exists' do
       before do

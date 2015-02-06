@@ -42,6 +42,10 @@ class Armoire
 
   # When a config setting isn't set, this exception will be raised
   class ConfigSettingMissing < StandardError; end
+
+  class << self
+    alias fetch []
+  end
 end
 
 if defined?(Rails::Railtie)

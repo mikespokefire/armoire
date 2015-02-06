@@ -12,6 +12,8 @@ class Armoire
       value.kind_of?(Hash) ? self.class.new(value) : value
     end
 
+    alias fetch []
+
     private
     attr_reader :setting
   end
