@@ -41,4 +41,22 @@ describe Armoire::Setting do
       end
     end
   end
+
+  describe '#has_key?' do
+    subject { setting.has_key?(key) }
+    let(:key) { 'simple' }
+
+    it { is_expected.to eql true }
+
+    context 'missing key' do
+      let(:key) { 'key_not_present' }
+      it { is_expected.to eql false }
+    end
+
+    context 'nested key' do
+      let(:key) { 'config' }
+      it { is_expected.to eql false }
+    end
+
+  end
 end
